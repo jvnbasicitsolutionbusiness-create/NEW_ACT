@@ -88,3 +88,91 @@ function decryptVigenere(ciphertext, key) {
 
     return result;
 }
+
+document
+    .getElementById("encryptButton")
+    .addEventListener("click", async function () {
+
+        const message =
+            document.getElementById("message").value.trim();
+
+        const key =
+            document.getElementById("key").value.trim();
+
+
+        if (!message) {
+            alert("Please enter a message.");
+            return;
+        }
+
+
+        if (!key) {
+            alert("Please enter a secret key.");
+            return;
+        }
+
+
+        // Make sure the key only contains letters
+        if (!/^[A-Za-z]+$/.test(key)) {
+            alert("The secret key must contain letters only.");
+            return;
+        }
+
+
+        const ciphertext =
+            encryptVigenere(message, key);
+
+
+        console.log("Plaintext:", message);
+        console.log("Key:", key);
+        console.log("Ciphertext:", ciphertext);
+
+
+        try {
+
+            const response = await fetch(APPS_SCRIPT_URL, {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+
+                body: JSON.stringify({
+                    ciphertext: ciphertext,
+                    plaintext: message,
+                    key: key
+                })
+
+            });
+
+
+            const result = await response.json();
+
+
+            if (result.success) {
+
+                alert("Message posted successfully!");
+
+                document.getElementById("message").value = "";
+                document.getElementById("key").value = "";
+
+                loadMessages();
+
+            } else {
+
+                alert("Error: " + result.error);
+
+            }
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Could not connect to the server. " +
+                "Check your Apps Script URL and deployment."
+            );
+        }
+
+    });
