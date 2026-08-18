@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Secret Message Board</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Secret Message Board</h1>
+        <p>Vigenère Cipher</p>
+    </header>
+
+    <main>
+
+        <section id="encrypt-section">
+
+            <h2>Create a Secret Message</h2>
+
+            <label for="message">
+                Message
+            </label>
+
+            <textarea
+                id="message"
+                placeholder="Enter your message..."
+            ></textarea>
+
+
+            <label for="key">
+                Secret Key
+            </label>
+
+            <input
+                type="text"
+                id="key"
+                placeholder="Enter your secret key..."
+            >
+
+
+            <button id="encryptButton">
+                Encrypt & Post
+            </button>
+
+        </section>
+
+
+        <section id="feed-section">
+
+            <h2>Public Message Feed</h2>
+
+            <div id="messageFeed">
+                Loading messages...
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
