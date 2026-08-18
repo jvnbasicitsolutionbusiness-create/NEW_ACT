@@ -176,3 +176,165 @@ document
         }
 
     });
+
+async function loadMessages() {
+
+    const feed =
+        document.getElementById("messageFeed");
+
+    feed.innerHTML = "Loading messages...";
+
+
+    try {
+
+        const response =
+            await fetch(APPS_SCRIPT_URL);
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            feed.innerHTML =
+                "Could not load messages.";
+
+            return;
+        }
+
+
+        if (data.messages.length === 0) {
+
+            feed.innerHTML =
+                "<p>No messages yet.</p>";
+
+            return;
+        }
+
+
+        feed.innerHTML = "";
+
+
+        data.messages.reverse().forEach(function(message) {
+
+            const card =
+                document.createElement("div");
+
+            card.className = "message-card";
+
+
+            const cipherTitle =
+                document.createElement("strong");
+
+            cipherTitle.textContent =
+                "Encrypted Message";
+
+
+            const ciphertext =
+                document.createElement("div");
+
+            ciphertext.className =
+                "ciphertext";
+
+            ciphertext.textContent =
+                message.ciphertext;
+
+
+            const keyInput =
+                document.createElement("input");
+
+            keyInput.type = "text";
+
+            keyInput.placeholder =
+                "Enter secret key";
+
+
+            const decryptButton =
+                document.createElement("button");
+
+            decryptButton.textContent =
+                "Decrypt";
+
+
+            const result =
+                document.createElement("div");
+
+            result.className =
+                "decrypt-result";
+
+
+            decryptButton.addEventListener(
+                "click",
+                function() {
+
+                    const key =
+                        keyInput.value.trim();
+
+
+                    if (!key) {
+
+                        alert(
+                            "Please enter a secret key."
+                        );
+
+                        return;
+                    }
+
+
+                    if (!/^[A-Za-z]+$/.test(key)) {
+
+                        alert(
+                            "The secret key must contain letters only."
+                        );
+
+                        return;
+                    }
+
+
+                    const plaintext =
+                        decryptVigenere(
+                            message.ciphertext,
+                            key
+                        );
+
+
+                    result.textContent =
+                        "Decrypted message: " +
+                        plaintext;
+
+                }
+            );
+
+
+            card.appendChild(cipherTitle);
+
+            card.appendChild(
+                document.createElement("br")
+            );
+
+            card.appendChild(ciphertext);
+
+            card.appendChild(keyInput);
+
+            card.appendChild(decryptButton);
+
+            card.appendChild(result);
+
+
+            feed.appendChild(card);
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        feed.innerHTML =
+            "Could not connect to the message server.";
+    }
+}
+
+
+/* Load messages when the page opens */
+
+loadMessages();
