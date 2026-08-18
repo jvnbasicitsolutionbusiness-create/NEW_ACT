@@ -1,5 +1,5 @@
 const APPS_SCRIPT_URL =
-    "PASTE-YOUR-APPS-SCRIPT-URL-HERE";
+    "https://script.google.com/macros/s/AKfycbyA5nPwBEFCRa3Q4i45MtqmxHphp840OEHfyoAQa4lrcuEjL0NQrZxFwvI6EZp-ocjSGg/exec";
 
 
 /* ================================
