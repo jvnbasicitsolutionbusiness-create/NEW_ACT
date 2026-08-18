@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Bitos' secure message board powered by Vigenère Cipher."
+    >
+
+    <title>Bitos' Message Board | Vigenère Cipher</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="site-header">
+
+            <div class="brand">
+                <div class="brand-icon">🔐</div>
+
+                <div>
+                    <h1>Bitos' Message Board</h1>
+                    <p>Secure communication with Vigenère Cipher</p>
+                </div>
+            </div>
+
+            <div class="security-status">
+                <span class="status-dot"></span>
+                <span>Encrypted</span>
+            </div>
+
+        </header>
+
+
+        <!-- Main Content -->
+        <main class="dashboard">
+
+            <!-- Create Message -->
+            <section id="encrypt-section" class="card message-card">
+
+                <div class="card-header">
+                    <div>
+                        <span class="eyebrow">SECURE MESSAGE</span>
+                        <h2>Create a Secret Message</h2>
+                        <p>
+                            Write your message and protect it with a secret key.
+                        </p>
+                    </div>
+
+                    <div class="card-icon">✦</div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="message">
+                        Message
+                    </label>
+
+                    <textarea
+                        id="message"
+                        rows="7"
+                        placeholder="Type your secret message here..."
+                        autocomplete="off"
+                    ></textarea>
+
+                    <span class="input-hint">
+                        Your message will be encrypted before posting.
+                    </span>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="key">
+                        Secret Key
+                    </label>
+
+                    <div class="key-input-wrapper">
+
+                        <span class="key-icon">🔑</span>
+
+                        <input
+                            type="text"
+                            id="key"
+                            placeholder="Enter your secret key..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                    <span class="input-hint">
+                        Use a memorable key to encrypt your message.
+                    </span>
+
+                </div>
+
+
+                <button
+                    id="encryptButton"
+                    class="primary-button"
+                    type="button"
+                >
+                    <span>Encrypt &amp; Post</span>
+                    <span class="button-arrow">→</span>
+                </button>
+
+            </section>
+
+
+            <!-- Message Feed -->
+            <section id="feed-section" class="card feed-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <span class="eyebrow">LIVE FEED</span>
+                        <h2>Public Message Feed</h2>
+                        <p>
+                            Encrypted messages posted by the community.
+                        </p>
+                    </div>
+
+                    <div class="feed-status">
+                        <span class="status-dot"></span>
+                        Live
+                    </div>
+
+                </div>
+
+
+                <div id="messageFeed" class="message-feed">
+
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+
+                        <p>Loading messages...</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer class="site-footer">
+
+            <p>
+                © 2026 Bitos' Message Board
+            </p>
+
+            <div class="footer-security">
+                <span>🔒</span>
+                <span>Vigenère Cipher Protected</span>
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
